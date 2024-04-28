@@ -185,6 +185,12 @@ if(is_null($data['event_info']['active'])){
 										</div><!--post-st end-->
 				              </div>
 										<div class="posts-section">
+                    <hr style="height:0.5px;border-width:0;color:gray;background-color:gray">
+
+                    @if( count($data['pub'])==0)
+                             <h2 style="font-size:1.5em"><b style="font-weight:bolder">No Posts added to this Events yet</b></h2>
+                    @endif
+
                                             <?php $followExist=0 ?>
                                 @if(App\lib\Event::FollowExist(Auth::id(),$data['event_info'][0]->id)==1)
                                            <?php $followExist=1 ?>
@@ -319,13 +325,13 @@ if(is_null($data['event_info']['active'])){
 											</div><!--post-bar end-->
 									       @endforeach
                                            @endif
-											<div class="process-comm">
+											<!-- <div class="process-comm">
 												<div class="spinner">
 													<div class="bounce1"></div>
 													<div class="bounce2"></div>
 													<div class="bounce3"></div>
 												</div>
-											</div><!--process-comm end-->
+											</div>process-comm end -->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
 

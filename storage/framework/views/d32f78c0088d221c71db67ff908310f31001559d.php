@@ -155,7 +155,10 @@
                                             
                                             
                                             
-                                            
+
+                                         <?php if( count($data['pub'])==0): ?>
+		                                   <h2 style="font-size:1.5em"><b style="font-weight:bolder">No News for you for now.</b></h2>
+                                         <?php endif; ?>
                                             
                                             
                                         <?php $__currentLoopData = $data['pub']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -290,13 +293,13 @@
 											</div><!--post-bar end-->
 									       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-											<div class="process-comm">
+											<!-- <div class="process-comm">
 												<div class="spinner">
 													<div class="bounce1"></div>
 													<div class="bounce2"></div>
 													<div class="bounce3"></div>
 												</div>
-											</div><!--process-comm end-->
+											</div>process-comm end -->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
 
