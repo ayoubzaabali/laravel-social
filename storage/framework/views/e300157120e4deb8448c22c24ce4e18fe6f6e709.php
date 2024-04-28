@@ -13,8 +13,16 @@
 						<div class="col-lg-6">
 							<div class="cmp-info">
 								<div class="cm-logo">
-									<img  src="<?php echo asset('profile_prop/images/cm-logo.png')  ?>" alt="">
-									<p>Ensa Docs,  is a global GED platform where you can share document create and independent professionals connect and collaborate with your class proffesors and admins</p>
+									<div style="display:flex;align-items:center ;margin-bottom:40px">
+
+									<img   src="<?php echo asset('profile_prop/images/letterE.png')  ?>" alt="" style="width:50px;margin-bottom:0 !important;margin-right:5px"> 
+									<h3 style="font-size:2rem;"><b style="font-weight:bolder">Socials</b></h3>
+								
+								    </div>
+									
+
+
+									<p>E Socials,Free Social Media Platform perfect for professors and great for students for fast communication and small events planning, you can share document create connect and collaborate with your class professors and colleagues.</p>
 								</div><!--cm-logo end-->	
 								<img  src="<?php echo asset('profile_prop/images/cm-main-img.png')  ?>"  alt="">			
 							</div><!--cmp-info end-->
