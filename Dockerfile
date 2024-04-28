@@ -18,6 +18,7 @@ ENV APP_ENV production
 WORKDIR /app
 COPY . .
 RUN composer update
+RUN chown -R www-data storage
 # Optimizing Configuration loading
 RUN php artisan config:cache
 # Optimizing Route loading
