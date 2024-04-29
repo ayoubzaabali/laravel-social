@@ -82,7 +82,7 @@
 												</div>
 												<span>
                                                     <a href="{{url('/')}}/Event/{{$encrypted_event}}">
-                                                        <i class="la la-plus"></i></a></span>
+                                                    <i class="fas fa-arrow-alt-circle-right"></i></a></span>
 											</div>
                                             
 								        @endforeach
@@ -133,7 +133,11 @@
 									<div class="product-feed-tab current" id="feed-dd">
                                         							<div class="post-topbar" {{$data['hide']}}>
 										<div class="user-picy">
+                    @if(is_null($data['user_info'][0]->photo))
                     <img  src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">
+                    @else
+                    <img  src="{{url('/').'/storage/app/'.$data['user_info'][0]->photo}}" alt="">
+                    @endif
 
 										</div>
 										<div class="post-st" >

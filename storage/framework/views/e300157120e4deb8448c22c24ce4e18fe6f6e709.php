@@ -13,13 +13,14 @@
 						<div class="col-lg-6">
 							<div class="cmp-info">
 								<div class="cm-logo">
+									<a href="<?php echo e(url('/'), false); ?>" style="color: inherit;">
 									<div style="display:flex;align-items:center ;margin-bottom:40px">
 
 									<img   src="<?php echo asset('profile_prop/images/letterE.png')  ?>" alt="" style="width:50px;margin-bottom:0 !important;margin-right:5px"> 
 									<h3 style="font-size:2rem;"><b style="font-weight:bolder">Socials</b></h3>
 								
 								    </div>
-									
+									</a>
 
 
 									<p>E Socials,Free Social Media Platform perfect for professors and great for students for fast communication and small events planning, you can share document create connect and collaborate with your class professors and colleagues.</p>
@@ -76,7 +77,7 @@ unset($__errorArgs, $__bag); ?>" placeholder="Password">
 														</label>
 														<small>Remember me</small>
 													</div><!--fgt-sec end-->
-													<a href="http://docs.smart-ensa.com/" title="">Back Home ?</a>
+													<a href="<?php echo e(url('/'), false); ?>" title="">Back Home ?</a>
 												</div>
                                                 
 											</div>
@@ -171,10 +172,10 @@ unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="new-pass
 					</div>		
 				</div><!--signin-pop end-->
 			</div><!--signin-popup end-->
-			<div class="footy-sec">
+			 <div class="footy-sec" style="visibility:hidden">
 				<div class="container">
 					<ul>
-						<li><a href="help-center.html" title="">Help Center</a></li>
+						<li><a href="#l" title="">Help Center</a></li>
 						<li><a href="about.html" title="">About</a></li>
 						<li><a href="#" title="">Privacy Policy</a></li>
 						<li><a href="#" title="">Community Guidelines</a></li>
@@ -186,7 +187,7 @@ unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="new-pass
 					</ul>
 					<p><img src="<?php echo asset('profile_prop/images/copy-icon.png')  ?>"  alt="">Copyright 2019</p>
 				</div>
-			</div><!--footy-sec end-->
+			</div>
 		</div><!--sign-in-page end-->
 
 

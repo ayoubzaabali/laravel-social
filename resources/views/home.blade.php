@@ -36,7 +36,7 @@
 		<div class="container">
 			<div class="navbar-brand">
 				<span class="navbar-logo">
-					<a href="{{url('/landing')}}">
+					<a href="{{url('/')}}">
 						<img src="{{ asset('home_assets/images/lettere.png') }}" alt="Mobirise Website Builder" style="height: 3rem;">
 					</a>
 				</span>

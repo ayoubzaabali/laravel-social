@@ -118,7 +118,7 @@
                             @else
 							<img style="width:30px;height:30px"  src="{{url('/').'/storage/app/'.$data->photo}}" alt="">
                             @endif
-							<a  href="#" title="">{{$data->name}}</a>
+							<a  href="#" title="">{{explode(" ",$data->name) [0]}}</a>
 							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss">

@@ -36,7 +36,7 @@
 		<div class="container">
 			<div class="navbar-brand">
 				<span class="navbar-logo">
-					<a href="<?php echo e(url('/landing'), false); ?>">
+					<a href="<?php echo e(url('/'), false); ?>">
 						<img src="<?php echo e(asset('home_assets/images/lettere.png'), false); ?>" alt="Mobirise Website Builder" style="height: 3rem;">
 					</a>
 				</span>

@@ -82,7 +82,7 @@
 												</div>
 												<span>
                                                     <a href="<?php echo e(url('/'), false); ?>/Event/<?php echo e($encrypted_event, false); ?>">
-                                                        <i class="la la-plus"></i></a></span>
+                                                    <i class="fas fa-arrow-alt-circle-right"></i></a></span>
 											</div>
                                             
 								        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -133,7 +133,11 @@
 									<div class="product-feed-tab current" id="feed-dd">
                                         							<div class="post-topbar" <?php echo e($data['hide'], false); ?>>
 										<div class="user-picy">
+                    <?php if(is_null($data['user_info'][0]->photo)): ?>
                     <img  src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">
+                    <?php else: ?>
+                    <img  src="<?php echo e(url('/').'/storage/app/'.$data['user_info'][0]->photo, false); ?>" alt="">
+                    <?php endif; ?>
 
 										</div>
 										<div class="post-st" >

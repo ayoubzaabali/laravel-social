@@ -56,6 +56,7 @@
 										<div class="suggestions-list">
                                             
                                         @foreach($data['events'] as $event)
+										<?php    $encrypted_event = Crypt::encryptString("$event->id") ;?>
 
 											<div class="suggestion-usd">
 												<img src="images/resources/s1.png" alt="">
@@ -63,7 +64,11 @@
 													<h4>{{$event->titre}}</h4>
 													<span><b>Followers :</b> {{$event->count}}</span>
 												</div>
-												<span><i class="la la-plus"></i></span>
+												<span>
+												<a href="{{url('/')}}/Event/{{$encrypted_event}}">
+													<i class="fas fa-arrow-alt-circle-right"></i>
+</a>
+												</span>
 											</div>
                                             
 								        @endforeach
@@ -88,8 +93,12 @@
                                     <!--product-feed-tab start IMPORTANT-->
 									<div class="product-feed-tab current" id="feed-dd">
                                         							<div class="post-topbar" >
-										<div class="user-picy">
-										<img src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">
+																	<div class="user-picy">
+                    @if(is_null($data['user_info'][0]->photo))
+                    <img  src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">
+                    @else
+                   <img  src="{{url('/').'/storage/app/'.$data['user_info'][0]->photo}}" alt="">
+                    @endif
 
 										</div>
 										<div class="post-st" >

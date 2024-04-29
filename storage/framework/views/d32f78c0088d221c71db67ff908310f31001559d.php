@@ -56,6 +56,7 @@
 										<div class="suggestions-list">
                                             
                                         <?php $__currentLoopData = $data['events']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+										<?php    $encrypted_event = Crypt::encryptString("$event->id") ;?>
 
 											<div class="suggestion-usd">
 												<img src="images/resources/s1.png" alt="">
@@ -63,7 +64,11 @@
 													<h4><?php echo e($event->titre, false); ?></h4>
 													<span><b>Followers :</b> <?php echo e($event->count, false); ?></span>
 												</div>
-												<span><i class="la la-plus"></i></span>
+												<span>
+												<a href="<?php echo e(url('/'), false); ?>/Event/<?php echo e($encrypted_event, false); ?>">
+													<i class="fas fa-arrow-alt-circle-right"></i>
+</a>
+												</span>
 											</div>
                                             
 								        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -88,8 +93,12 @@
                                     <!--product-feed-tab start IMPORTANT-->
 									<div class="product-feed-tab current" id="feed-dd">
                                         							<div class="post-topbar" >
-										<div class="user-picy">
-										<img src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">
+																	<div class="user-picy">
+                    <?php if(is_null($data['user_info'][0]->photo)): ?>
+                    <img  src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">
+                    <?php else: ?>
+                   <img  src="<?php echo e(url('/').'/storage/app/'.$data['user_info'][0]->photo, false); ?>" alt="">
+                    <?php endif; ?>
 
 										</div>
 										<div class="post-st" >

@@ -118,7 +118,7 @@
                             <?php else: ?>
 							<img style="width:30px;height:30px"  src="<?php echo e(url('/').'/storage/app/'.$data->photo, false); ?>" alt="">
                             <?php endif; ?>
-							<a  href="#" title=""><?php echo e($data->name, false); ?></a>
+							<a  href="#" title=""><?php echo e(explode(" ",$data->name) [0], false); ?></a>
 							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss">
