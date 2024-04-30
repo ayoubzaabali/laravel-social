@@ -198,10 +198,10 @@ public static function UnFollowEvent($id,$info)
     public static function insert($name,$id,$path,$current_timestamp,$original,$opt){
    
     try { 
-     DB::table('event')->insert([
+    $lastInsertedId = DB::table('event')->insertGetId(
     ['titre' => $name,'user_id' => $id,'photo' => $path,'date_creation'=>$current_timestamp,'original_name'=>$original,'public'=>$opt]
-
-     ]); 
+     );
+     return ($lastInsertedId);
      } catch(\Illuminate\Database\QueryException $ex){ 
   dd($ex->getMessage()); 
  

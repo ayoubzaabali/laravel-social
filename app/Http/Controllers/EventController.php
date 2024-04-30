@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Carbon\Carbon;
 use App\lib\Event;
@@ -275,10 +276,15 @@ top: 20%;
         
 
     $path=  $request->file('EventPhoto')->store("link/");
-    Event::insert($name,$id,$path,$current_timestamp,$original,$opt);
-         return redirect('/profile');
+    $lastInsertedId=Event::insert($name,$id,$path,$current_timestamp,$original,$opt);
+        //  return redirect('/profile');
+       // return back()->withInput();
+      // return to_route('/Event', ['eventID' => Crypt::encryptString($lastInsertedId)]);
+      return(Redirect::to("/Event/".Crypt::encryptString($lastInsertedId)));
+      
     }else{
-         return redirect('/profile');
+        //  return redirect('/profile');
+        return back()->withInput();
     }
         
     }

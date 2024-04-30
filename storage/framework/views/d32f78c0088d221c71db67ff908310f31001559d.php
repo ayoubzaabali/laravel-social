@@ -106,9 +106,9 @@
 										<div class="post-st" >
 											<ul>
                                                 <?php if(count($data['events'])==0): ?>
-												<li hidden ><a class="post_project" href="#" title="">Post a Document</a></li>
+												<li hidden ><a class="post_project active" href="#" title="">Post a Document</a></li>
                                                 <?php else: ?>
-                                                <li ><a class="post_project" href="#" title="">Post a Document</a></li>
+                                                <li ><a class="post_project active" href="#" title="">Post a Document</a></li>
                                                  <?php endif; ?>
 												<li><a class="post-jb active" href="#" title="">Create an Event</a></li>
 											</ul>
@@ -434,53 +434,79 @@
 				
 		</div><!--post-project-popup end-->
 		</div><!--post-project-popup end-->
+
+<!-- start event post -->
+
 <div class="post-popup job_post">
-			<div class="post-project">
-				<h3>Post an Event</h3>
-				<div class="post-project-fields">
-					<form method="POST" action="<?php echo e(route('addEvent'), false); ?>"  enctype="multipart/form-data" >
-                        <?php echo csrf_field(); ?>
-				<input required id="fileElem" type="file" onchange="handler(this)" style="display:none" name="EventPhoto"  />
-						<div class="row">
-							<div class="col-lg-12">
-								<input required type="text" name="title" placeholder="Title">
-							</div>
-							
-							<div class="col-lg-6">
-								<div class="price-br">
-									<!-- === File Upload ===
+  <div class="post-project">
+    <h3>Post an Event</h3>
+    <div class="post-project-fields">
+      <form method="POST" action="<?php echo e(route('addEvent'), false); ?>" enctype="multipart/form-data"> <?php echo csrf_field(); ?> <input required id="fileElem" type="file" onchange="handler(this)" style="display:none" name="EventPhoto" />
+        <div class="row">
+          <div class="col-lg-12">
+            <input required type="text" name="title" placeholder="Title">
+          </div>
+          <div class="col-lg-12">
+            <div class="option-group">
+              <div class="option-container">
+                <input value="1" class="option-input" checked id="option-1" type="radio" name="options" />
+                <input value="0" class="option-input" id="option-2" type="radio" name="options" />
+                <label class="option" for="option-1">
+                  <span class="option__indicator"></span>
+                  <span class="option__label"> Public </span>
+                </label>
+                <label class="option" for="option-2">
+                  <span class="option__indicator"></span>
+                  <span class="option__label"> Private </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="price-br">
+              <!-- === File Upload ===
 Design a file upload element. Is it the loading screen and icon? A progress element? Are folders being uploaded by flying across the screen like Ghostbusters? ;)  
 -->
-
-<div id="FileUpload">
-  <div class="wrapper2">
-    <div id="fileSelect" class="upload">
-      <p><span class="upload__button">Event Cover</span></p>
-    </div>
-    <div class="uploaded uploaded--one" style="display:none">
-      <i class="far fa-image"></i>
-      <div  class="file"  >
-        <div  class="file__name" >
-          <p id="fileName">DZADZADZ.pdf</p>
+              <div id="FileUpload">
+                <div class="wrapper2">
+                  <div id="fileSelect" class="upload">
+                    <p>
+                      <span class="upload__button">Event Cover</span>
+                    </p>
+                  </div>
+                  <div class="uploaded uploaded--one" style="display:none">
+                    <i class="far fa-image"></i>
+                    <div class="file">
+                      <div class="file__name">
+                        <p id="fileName">DZADZADZ.pdf</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <ul>
+              <li>
+                <button class="active" type="submit" value="post">Post</button>
+              </li>
+              <li>
+                <a href="#" title="">Cancel</a>
+              </li>
+            </ul>
+          </div>
         </div>
-     
-      </div>
+      </form>
     </div>
-
+    <a href="#" title="">
+      <i class="la la-times-circle-o"></i>
+    </a>
   </div>
 </div>
-								</div>
-							</div>
+<!--post-event end-->
 
-							<div class="col-lg-12">
-								<ul>
-									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div><!--post-project-fields end-->
+
 				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
                  <script type="text/javascript">
                 'use strict'

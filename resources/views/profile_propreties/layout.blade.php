@@ -286,7 +286,9 @@
                          sug.classList.add('suggestion-usd');
                          var img= document.createElement("img");
                          img.style.width="30px";
-                         if(data[i]['dphoto']==null){
+                         console.log("we are here");
+                         console.log(data[i]);
+                         if(data[i]['lphoto']==null){
                          img.setAttribute("src",URL+"/profile_prop/images/default.jpg");  
                          }else{
                          img.setAttribute("src",URL+"/storage/app/"+data[i]['lphoto']);
