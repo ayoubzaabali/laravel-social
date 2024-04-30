@@ -18,7 +18,7 @@
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-								<?php if(is_null($data['user_info'][0]->cover)): ?>
+								<?php if(is_null($data['user_info'][0]->photo)): ?>
 			                         <img   src="<?php echo asset('profile_prop/images/default.jpg')  ?>"   alt="">
                                 <?php else: ?>
  			                         <img  src="<?php echo e(url('/').'/storage/app/'.$data['user_info'][0]->photo, false); ?>"   alt="">

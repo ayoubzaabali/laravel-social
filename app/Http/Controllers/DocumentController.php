@@ -94,12 +94,16 @@ top: 20%;
 </html>");
         
     $path=  $request->file('doc')->store("link/");
-    $query=Docs::insert($name,$id,$path,$current_timestamp,$original,$description,$event_id );
+    $lastInsertedId=$query=Docs::insert($name,$id,$path,$current_timestamp,$original,$description,$event_id );
      $notifs=Notif::select_Notif_User_Docs(Auth::id(),$query);
            Notif::store($notifs);
-         return redirect('/profile');
+     
+           $str= "/Doc/". Crypt::encryptString($lastInsertedId);
+           echo(  "<script> window.location =" . "'" .  $str . "'" . "</script>"  ); 
+           
+
     }else{
-           return redirect('/profile');
+      return back()->withInput();
     }
     
     }

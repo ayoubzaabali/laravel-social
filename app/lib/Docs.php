@@ -153,12 +153,12 @@ public static function select_Doc($id){
      */
     public static function insert($name,$id,$path,$current_timestamp,$original,$description,$event_id){
     try { 
-     DB::table('document')->insert([
+     $insertGetId=DB::table('document')->insertGetId(
     ['titre' => $name,'user_id' => $id,'path' => $path,'date_creation'=>$current_timestamp,'original_name'=>$original,'descr'=>$description,'event_id'=>$event_id]
 
-     ]); 
-        $ids = DB::getPdo()->lastInsertId();
-        return($ids);
+     ); 
+       // $ids = DB::getPdo()->lastInsertId();
+        return($insertGetId);
         
      } catch(\Illuminate\Database\QueryException $ex){ 
   dd($ex->getMessage()); 

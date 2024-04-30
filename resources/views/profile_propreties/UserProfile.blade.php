@@ -36,6 +36,7 @@
 									<div class="user_profile">
                                         <form method="POST" id="ProfileForm"   enctype="multipart/form-data" >
                                          @csrf
+
 										<div class="user-pro-img">
                                             @if(is_null($data['user_info'][0]->photo))
                                            <img id="myphoto" src="<?php echo asset('profile_prop/images/default.jpg')  ?>"alt="">

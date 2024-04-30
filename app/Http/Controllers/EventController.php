@@ -135,7 +135,7 @@ class EventController extends Controller
     public function Eventlist(Request $request){
         $id = Auth::id();
         $data = array();
-        
+  
 
         $events=Event::Events_Except_Mine($id);
         $data['events']=$events;

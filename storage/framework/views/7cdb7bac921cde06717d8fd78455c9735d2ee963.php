@@ -14,9 +14,22 @@
 				<div class="companies-list">
 					<div class="row">
            
-                        
                         <?php $__currentLoopData = $data['events']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php    $encrypted = Crypt::encryptString("$event->id") ;?>
+
+
+                    <?php   
+                    
+                    $encrypted = Crypt::encryptString("$event->id") ; 
+                    $event_info=App\lib\Event::Event_info($event->id,Auth::id());
+                    $data['event_info']=$event_info;
+
+                    if(is_null($data['event_info']['active'])){
+                    $intval=0 ;
+                    }else{
+                     $intval= (int)$data['event_info']['active']->active;
+                    }
+                    
+                    ?>
                         
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
@@ -26,15 +39,20 @@
                                             <?php else: ?>
                                             <img style="width:100px;height:100px" id="myphoto"src="<?php echo e(url('/').'/storage/app/'.$event->photo, false); ?>"alt="">
                                              <?php endif; ?>									<h3><?php echo e($event->titre, false); ?></h3>
-									<h4>Ensa Tnager</h4>
+									<h4>E Socials</h4>
 									<ul>
                                         <?php
                           if(App\lib\Event::FollowExist(Auth::id(),$event->id)==1){
                                         ?>
-                                        
-										<li onclick="parser(this)" data="<?php echo e($encrypted, false); ?>"><a id="ff" href="#" title="" class="follow">Unfollow</a></li>
+                    
+                    <?php if($intval==1): ?>
+										<li  style="color:#fff;cursor:pointer" onclick="parser(this)" data="<?php echo e($encrypted, false); ?>"><a id="ff" title="" class="follow">Unfollow</a></li>
+                    <?php else: ?>
+										<li style="color:#fff;cursor:pointer" data="<?php echo e($encrypted, false); ?>"><a id="ff"  title="" class="follow">Pending..</a></li>
+                    <?php endif; ?>
+
                                          <?php }else{ ?>
-                                         <li onclick="parser(this)" data="<?php echo e($encrypted, false); ?>"><a id="ff" href="#" title="" class="follow">Follow</a></li>
+                                         <li style="color:#fff;cursor:pointer" onclick="parser(this)" data="<?php echo e($encrypted, false); ?>"><a id="ff"  title="" class="follow">Follow</a></li>
 
                                        <?php }  ?>
 
@@ -60,11 +78,13 @@
            
             function parser(dat){
                      var fan=dat.firstChild.innerText;
-                     dat.firstChild.innerText='Wait..';
+                    
                     // window.open("<?php echo e(url('/'), false); ?>"+"/unfollow/"+data+"/1");
                      if(fan=="Follow"){
+                      dat.firstChild.innerText='Wait..';
                        loadDoc(dat);  
                      }else if(fan=="Unfollow"){
+                      dat.firstChild.innerText='Wait..';
                       loadDoc2(dat);  
                       }
                      
@@ -75,9 +95,15 @@
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        if(this.responseText=="OK"){
+                      if(this.responseText==1){
                          dat.firstChild.innerText='Unfollow';
-                       }
+                        
+                        }else if(this.responseText==0) {
+                           dat.firstChild.innerText='Pending..';
+                          //  dat.onclick=(){
+
+                          //  }
+                         }
                      
                     }
                       };

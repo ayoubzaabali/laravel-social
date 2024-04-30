@@ -28,13 +28,13 @@
 						<ul>
 							<li>
 								<a href="{{url('/')}}" title="">
-									<span><img src="<?php echo asset('profile_prop/images/home.png')  ?>"  alt=""></span>
+									<span style="margin-bottom:7px"><img src="<?php echo asset('profile_prop/images/home.png')  ?>"  alt=""></span>
 									Home
 								</a>
 							</li>
 							<li>
 								<a href="{{url('/')}}/profile" title="">
-									<span><img src="<?php echo asset('profile_prop/images/profile.png')  ?>" alt=""></span>
+									<span style="margin-bottom:7px"><img src="<?php echo asset('profile_prop/images/profile.png')  ?>" alt=""></span>
 									My Profile
 								</a>
 								
@@ -43,8 +43,8 @@
                             
 							<li>
 								<a  href="{{url('/')}}/profiles" title="">
-									<span><img src="<?php echo asset('profile_prop/images/suggestions.png')  ?>"alt=""></span>
-									Suggestions
+									<span style="margin-bottom:7px"><img src="<?php echo asset('profile_prop/images/suggestions.png')  ?>"alt=""></span>
+									Profile Suggestions
 								</a>
 								<!-- <ul>
 									<li><a href="{{url('/')}}/events" title="">Others Events</a></li>
@@ -54,8 +54,8 @@
 
               <li>
               <a  href="{{url('/')}}/events" title="">
-									<span><img src="<?php echo asset('profile_prop/images/discover.png')  ?>"alt=""></span>
-									Discover
+									<span style="margin-bottom:7px"><img src="<?php echo asset('profile_prop/images/discover.png')  ?>"alt=""></span>
+									Discover Events
 								</a>
 
               </li>
@@ -63,7 +63,7 @@
 						
 							<li>
 								<a href="#" title="" class="not-box-open">
-									<span class="animated"><img  src="<?php echo asset('profile_prop/images/icon10.png')  ?>"  alt=""></span>
+									<span style="margin-bottom:7px" class="animated"><img  src="<?php echo asset('profile_prop/images/icon10.png')  ?>"  alt=""></span>
 									Notification
 								</a>
                              <?php $notifs= App\lib\Notif::MyNotificationsTen(Auth::id());  ?>

@@ -18,7 +18,7 @@
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-								@if(is_null($data['user_info'][0]->cover))
+								@if(is_null($data['user_info'][0]->photo))
 			                         <img   src="<?php echo asset('profile_prop/images/default.jpg')  ?>"   alt="">
                                 @else
  			                         <img  src="{{url('/').'/storage/app/'.$data['user_info'][0]->photo}}"   alt="">
