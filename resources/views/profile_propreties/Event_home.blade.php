@@ -65,7 +65,7 @@ if(is_null($data['event_info']['active'])){
 
 
 													<h3>{{$data['event_info'][0]->usname}}</h3>
-													<span>Ensa Tanger</span>
+													<span>Admin</span>
                                             
 													<ul>
                                     <?php if($data['hide']=="hidden"){?>
@@ -366,8 +366,8 @@ if(is_null($data['event_info']['active'])){
                                                                 <h3>{{$pend->pname}}</h3>
                                                                 <div class="epi-sec epi2">
                                                                     <ul class="descp descptab bklink">
-                                                                        <li><img src="<?php echo asset('profile_prop/images/icon8.png') ?>" alt=""><span>Ensa</span></li>
-                                                                        <li><img src="<?php echo asset('profile_prop/images/icon9.png') ?>" alt=""><span>Tanger</span></li>
+                                                                        <li><img src="<?php echo asset('profile_prop/images/icon8.png') ?>" alt=""><span>E</span></li>
+                                                                        <li><img src="<?php echo asset('profile_prop/images/icon9.png') ?>" alt=""><span>Socials</span></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>

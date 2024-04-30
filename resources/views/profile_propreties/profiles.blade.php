@@ -28,7 +28,7 @@
                                             @else
                                             <img id="myphoto"src="{{url('/').'/storage/app/'.$user->photo}}"alt="">
                                              @endif									<h3>{{$user->name}}</h3>
-									<h4>Ensa Tnager</h4>
+									<h4>E Socials</h4>
 									<ul>
                                         <?php if(App\lib\Users::FollowExist(Auth::id(),$user->id)==1){?>
 										<li onclick="parser(this)" data="{{$encrypted}}"><a id="ff" href="#" title="" class="follow">Unfollow</a></li>

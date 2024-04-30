@@ -234,7 +234,7 @@
 															
 														</li> 
                                                         <li data="<?php echo e($pub->likes, false); ?>" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span id="pubLikes"><?php echo e(count($pub->likes), false); ?></span>
+                                                         <span class="pubLikes"><?php echo e(count($pub->likes), false); ?></span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment <?php echo e(count($pub->coms), false); ?></a></li>
 													</ul>

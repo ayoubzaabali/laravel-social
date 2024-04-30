@@ -241,16 +241,17 @@
 
                     var data=dat.getAttribute('data');
                     var stat=dat.classList[0];
-                    console.log(stat);
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                       dat.classList.toggle(this.responseText);
+                      dat.classList.toggle(this.responseText);
+                      var elemcnt=dat.parentElement.parentElement.getElementsByTagName('li')[1].firstElementChild;
 
                        if(dat.classList.contains('active')){
-                        document.querySelector("#pubLikes").innerHTML=parseInt(document.querySelector("#pubLikes").innerHTML)+1;
+                        console.log(elemcnt);
+                        elemcnt.innerHTML=parseInt(elemcnt.innerHTML)+1;
                        }else{
-                        document.querySelector("#pubLikes").innerHTML=parseInt(document.querySelector("#pubLikes").innerHTML)-1;
+                        elemcnt.innerHTML=parseInt(elemcnt.innerHTML)-1;
                        
                        }
                      

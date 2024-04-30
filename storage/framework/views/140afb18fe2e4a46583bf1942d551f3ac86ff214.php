@@ -28,7 +28,7 @@
                                             <?php else: ?>
                                             <img id="myphoto"src="<?php echo e(url('/').'/storage/app/'.$user->photo, false); ?>"alt="">
                                              <?php endif; ?>									<h3><?php echo e($user->name, false); ?></h3>
-									<h4>Ensa Tnager</h4>
+									<h4>E Socials</h4>
 									<ul>
                                         <?php if(App\lib\Users::FollowExist(Auth::id(),$user->id)==1){?>
 										<li onclick="parser(this)" data="<?php echo e($encrypted, false); ?>"><a id="ff" href="#" title="" class="follow">Unfollow</a></li>

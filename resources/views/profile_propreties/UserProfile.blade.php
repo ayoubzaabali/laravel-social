@@ -234,7 +234,7 @@
 															
 														</li> 
                                                         <li data="{{$pub->likes}}" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span id="pubLikes">{{count($pub->likes)}}</span>
+                                                         <span class="pubLikes">{{count($pub->likes)}}</span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{count($pub->coms)}}</a></li>
 													</ul>
