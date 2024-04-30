@@ -280,8 +280,13 @@ top: 20%;
         //  return redirect('/profile');
        // return back()->withInput();
       // return to_route('/Event', ['eventID' => Crypt::encryptString($lastInsertedId)]);
-      return(Redirect::to("/Event/".Crypt::encryptString($lastInsertedId)));
-      
+      //return(Redirect::to("/Event/".Crypt::encryptString($lastInsertedId)  ));
+          //  Route::redirect("/Event/".Crypt::encryptString($lastInsertedId));   
+
+    $str= "/Event/". Crypt::encryptString($lastInsertedId);
+    echo(  "<script> window.location =" . "'" .  $str . "'" . "</script>"  ); 
+    
+    
     }else{
         //  return redirect('/profile');
         return back()->withInput();
