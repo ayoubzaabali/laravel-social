@@ -184,8 +184,8 @@
 												</div>
 												<div class="epi-sec">
 													<ul class="descp">
-														<li><img src="<?php echo asset('profile_prop/images/icon8.png')  ?>"  alt=""><span>Ensa</span></li>
-														<li><img src="<?php echo asset('profile_prop/images/icon9.png')  ?>"  alt=""><span>Tnager</span></li>
+														<li><img src="<?php echo asset('profile_prop/images/icon8.png')  ?>"  alt=""><span>E</span></li>
+														<li><img src="<?php echo asset('profile_prop/images/icon9.png')  ?>"  alt=""><span>Socials</span></li>
 													</ul>
 													
 												</div>
@@ -529,7 +529,7 @@
                 <button class="active" type="submit" value="post">Post</button>
               </li>
               <li>
-                <a href="#" title="">Cancel</a>
+                <a onclick="document.querySelector('#Cdocs').click()" title="">Cancel</a>
               </li>
             </ul>
           </div>
@@ -537,8 +537,8 @@
       </form>
     </div>
     <!--post-project-fields end-->
-    <a href="#" title="">
-      <i class="la la-times-circle-o"></i>
+    <a href="#" id="Cdocs"   title="">
+      <i  class="la la-times-circle-o"></i>
     </a>
   </div>
   <!--post-project end-->
@@ -602,7 +602,7 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
                 <button class="active" type="submit" value="post">Post</button>
               </li>
               <li>
-                <a href="#" title="">Cancel</a>
+                <a onclick="document.querySelector('#Cdocs').click()" title="">Cancel</a>
               </li>
             </ul>
           </div>

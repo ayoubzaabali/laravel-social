@@ -221,8 +221,8 @@ if(is_null($data['event_info']['active'])){
 												</div>
 												<div class="epi-sec">
 													<ul class="descp">
-														<li><img src="<?php echo asset('profile_prop/images/icon8.png')  ?>"  alt=""><span>Ensa</span></li>
-														<li><img src="<?php echo asset('profile_prop/images/icon9.png')  ?>"  alt=""><span>Tnager</span></li>
+														<li><img src="<?php echo asset('profile_prop/images/icon8.png')  ?>"  alt=""><span>E</span></li>
+														<li><img src="<?php echo asset('profile_prop/images/icon9.png')  ?>"  alt=""><span>Socials</span></li>
 													</ul>
 													
 												</div>
@@ -613,13 +613,13 @@ if(is_null($data['event_info']['active'])){
 							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
+									<li><a onclick="document.querySelector('#Cdocs').click()" title="">Cancel</a></li>
 								</ul>
 							</div>
 						</div>
 					</form>
 				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+				<a style="cursor:pointer;color:#fff"  id="Cdocs" title=""><i class="la la-times-circle-o"></i></a>
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
 
@@ -717,7 +717,7 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
 							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
+									<li><a href="#" onclick="document.querySelector('#Cdocs').click()" title="">Cancel</a></li>
 								</ul>
 							</div>
 						</div>

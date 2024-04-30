@@ -44,7 +44,7 @@
 							<li>
 								<a  href="{{url('/')}}/profiles" title="">
 									<span style="margin-bottom:7px"><img src="<?php echo asset('profile_prop/images/suggestions.png')  ?>"alt=""></span>
-									Profile Suggestions
+									Suggested Profiles
 								</a>
 								<!-- <ul>
 									<li><a href="{{url('/')}}/events" title="">Others Events</a></li>
@@ -62,9 +62,9 @@
 							
 						
 							<li>
-								<a href="#" title="" class="not-box-open">
+								<a style="cursor:pointer;color:#fff" title="" class="not-box-open">
 									<span style="margin-bottom:7px" class="animated"><img  src="<?php echo asset('profile_prop/images/icon10.png')  ?>"  alt=""></span>
-									Notification
+									Notifications
 								</a>
                              <?php $notifs= App\lib\Notif::MyNotificationsTen(Auth::id());  ?>
 

@@ -142,7 +142,7 @@
                                              @endif									
                                                     <h3>{{$user->name}}</h3>													
                                                     
-													<span>Ensa Tnager</span>
+													<span>E Socials</span>
 													<ul>
                                   <?php if(App\lib\Users::FollowExist(Auth::id(),$user->id)==1){?>
 										<li onclick="paysar(this)" data="{{$encrypted_user}}"><a id="ff" href="#" title="" class="followw">Unfollow</a></li>
@@ -197,8 +197,8 @@
 												</div>
 												<div class="epi-sec">
 													<ul class="descp">
-														<li><img src="<?php echo asset('profile_prop/images/icon8.png')  ?>"  alt=""><span>Ensa</span></li>
-														<li><img src="<?php echo asset('profile_prop/images/icon9.png')  ?>"  alt=""><span>Tnager</span></li>
+														<li><img src="<?php echo asset('profile_prop/images/icon8.png')  ?>"  alt=""><span>E</span></li>
+														<li><img src="<?php echo asset('profile_prop/images/icon9.png')  ?>"  alt=""><span>Socials</span></li>
 													</ul>
 													
 												</div>
@@ -406,13 +406,13 @@
 							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="post">Post</button></li>
-									<li><a href="#" title="">Cancel</a></li>
+									<li><a href="#" onclick="document.querySelector('#Cdocs').click()" title="">Cancel</a></li>
 								</ul>
 							</div>
 						</div>
 					</form>
 				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+				<a href="#" id="Cdocs" title=""><i class="la la-times-circle-o"></i></a>
 			</div><!--post-project end-->
 		</div><!--post-project-popup end-->
 	<div class="post-popup views">
@@ -492,7 +492,7 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
                 <button class="active" type="submit" value="post">Post</button>
               </li>
               <li>
-                <a href="#" title="">Cancel</a>
+                <a href="#" onclick="document.querySelector('#Cdocs').click()" title="">Cancel</a>
               </li>
             </ul>
           </div>
