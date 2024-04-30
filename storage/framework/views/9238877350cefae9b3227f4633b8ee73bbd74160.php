@@ -74,7 +74,7 @@ if(is_null($data['event_info']['active'])){
                                          <?php }else{ ?>
                                          <li onclick="parser(this)" data="<?php echo e($encryptede, false); ?>"><a id ="ff"href="#" title="" class="follow">Follow</a></li>
 
-                                       <?php }  ?>														<li><a href="#" title="" class="envlp"><i class="fa fa-envelope"></i></a></li>
+                                       <?php }  ?>														<li><a href="<?php echo e(url('/soon'), false); ?>" title="" class="envlp"><i class="fa fa-envelope"></i></a></li>
                                             <?php }  ?>	
 													</ul>
                                              <?php
@@ -132,7 +132,7 @@ if(is_null($data['event_info']['active'])){
                                         
                                       
 										<div class="star-descp">
-											<span>Ecole Nationale des Sciences Appliquées Tanger</span>
+											<span>E Socials</span>
 											<ul>
 												<li><i class="fa fa-star"></i></li>
 												<li><i class="fa fa-star"></i></li>
@@ -267,7 +267,7 @@ if(is_null($data['event_info']['active'])){
 															
 														</li> 
                                                         <li data="<?php echo e($pub->likes, false); ?>" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span><?php echo e(count($pub->likes), false); ?></span>
+                                                         <span id="pubLikes"><?php echo e(count($pub->likes), false); ?></span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment <?php echo e(count($pub->coms), false); ?></a></li>
 													</ul>
@@ -278,7 +278,7 @@ if(is_null($data['event_info']['active'])){
 												</div>
                                                 
 								    <div class="comment-section">
-												<a id="uih" data="<?php echo e($pub->coms, false); ?>" onclick='viewAll(this)' class="plus-ic">
+												<a style="display:none" id="uih" data="<?php echo e($pub->coms, false); ?>" onclick='viewAll(this)' class="plus-ic">
 													<i class="la la-plus"></i>
                                                     
 												</a>
@@ -287,26 +287,33 @@ if(is_null($data['event_info']['active'])){
 															
 															<ul id="coms">
                                                                 <?php if(count($pub->coms)>0): ?>
-                                                                <li style="background-color:#F1F1F1;border:1px;padding:10px;   margin-top: 20px;">
+                                                                <?php $__currentLoopData = $pub->coms->reverse(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $com): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
+																<li style="background-color:#F1F1F1;border:1px;padding:10px;margin-buttom:20px">
 																	<div class="comment-list">
 																		<div class="bg-img">
 																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
 																		</div>
 																		<div class="comment">
-                                                                            <span>
-                                                                                <?php if(is_null($pub->coms[0]->cphoto)): ?>
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
+                                                                            <span>                    
+                                                                              
+                                                                            
+
+                                                                                <?php if(is_null($com->cphoto)): ?>
+                                                                                <img style="width:30px" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
                                                                                 <?php else: ?>
-                                                                                <img style="width:30px;" src="<?php echo e(url('/').'/storage/app/'.$pub->coms[0]->cphoto, false); ?>" alt="">
+                                                                                <img style="width:30px;height:35px" src="<?php echo e(url('/').'/storage/app/'.$com->cphoto, false); ?>" alt="">
                                                                                 <?php endif; ?>
-                                                                                <h3><?php echo e($pub->coms[0]->cname, false); ?></h3> <?php echo e($pub->coms[0]->cdate, false); ?></span>
+
+
+                                                                                <h3><?php echo e($com->cname, false); ?></h3> <?php echo e($com->cdate, false); ?></span>
 																			
-                                                                            <p><?php echo e($pub->coms[0]->content, false); ?> </p>
+                                                                            <p><?php echo e($com->content, false); ?> </p>
 																			
 																			
 																		</div>
 																	</div><!--comment-list end-->
 																</li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 <?php endif; ?>
                                                                
 															</ul>
@@ -366,7 +373,7 @@ if(is_null($data['event_info']['active'])){
                                                                 </div>
                                                             </div>
                                                                <div class="job_descp noborder">
-                                                            <div class="devepbtn appliedinfo noreply">
+                                                            <div class="devepbtn appliedinfo noreply" id="norep">
                                                                 <a class="clrbtn" data_id="<?php echo e($pend->event_id, false); ?>" 
                                                                    data_user="<?php echo e($pend->user_id, false); ?>" onclick="bosni(this)" href="#man">Accept</a>
                                                                 <a class="clrbtn" href="#">View Profile</a>
@@ -1186,9 +1193,10 @@ document.getElementById("ff").innerText='Unfollow';
                     if (this.readyState == 4 && this.status == 200) {
                         if(this.responseText==1){
                          dat.firstChild.innerText='Unfollow';
-                       }else if(this.responseText==0) {
+                        
+                        }else if(this.responseText==0) {
                            dat.firstChild.innerText='Pending..';
-                       }
+                         }
                      
                     }
                       };

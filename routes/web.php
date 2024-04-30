@@ -104,3 +104,9 @@ Route::get('/Notifications', 'NotificationController@get')->middleware('auth');
 Route::get('/getMynotification/{LastNotif}', 'NotificationController@getNewNotifications')->middleware('auth');
 
 //notofication_end
+
+
+//comming soon page
+Route::get('/soon', function () {
+    return view('profile_propreties.soon');
+});

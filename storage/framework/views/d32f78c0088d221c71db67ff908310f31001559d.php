@@ -27,7 +27,7 @@
 											</div><!--username-dt end-->
 											<div class="user-specs">
 												<h3><?php echo e($data['user_info'][0]->name, false); ?></h3>
-												<span>Ecole Nationale des Sciences Appliquées Tanger</span>
+												<span>E Socials</span>
 											</div>
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
@@ -72,13 +72,15 @@
 											</div>
                                             
 								        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-	
-										
-										
-										
-											<div class="view-more">
-												<a href="#" title="">View More</a>
+	                                    <?php if(count($data['events'])==0): ?>
+										<div class="view-more">
+												<a href="#" title="">you have no events yet</a>
 											</div>
+										<?php endif; ?>
+										
+										
+										
+											
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
                                     
@@ -150,7 +152,7 @@
                                        <?php }  ?>                                                        
                                                         
                                                         
-														<li><a href="#" title="" class="envlp"><i class="fa fa-envelope"></i></a></li>
+														<li><a href="<?php echo e(url('/soon'), false); ?>" title="" class="envlp"><i class="fa fa-envelope"></i></a></li>
 													</ul>
 													<a href="<?php echo e(url('/'), false); ?>/profile/<?php echo e($encrypted_user, false); ?>" title="">View Profile</a>
 												</div><!--user-profy end-->
@@ -244,7 +246,7 @@
 															
 														</li> 
                                                         <li data="<?php echo e($pub->likes, false); ?>" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span><?php echo e(count($pub->likes), false); ?></span>
+                                                         <span id="pubLikes"><?php echo e(count($pub->likes), false); ?></span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment <?php echo e(count($pub->coms), false); ?></a></li>
 													</ul>
@@ -255,7 +257,7 @@
 												</div>
                                                 
 								    <div class="comment-section">
-												<a id="uih" data="<?php echo e($pub->coms, false); ?>" onclick='viewAll(this)' class="plus-ic">
+												<a style="display:none" id="uih" data="<?php echo e($pub->coms, false); ?>" onclick='viewAll(this)' class="plus-ic">
 													<i class="la la-plus"></i>
                                                     
 												</a>
@@ -264,26 +266,33 @@
 															
 															<ul id="coms">
                                                                 <?php if(count($pub->coms)>0): ?>
-                                                                <li style="background-color:#F1F1F1;border:1px;padding:10px;   margin-top: 20px;">
+																<?php $__currentLoopData = $pub->coms->reverse(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $com): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
+																<li style="background-color:#F1F1F1;border:1px;padding:10px;margin-buttom:20px">
 																	<div class="comment-list">
 																		<div class="bg-img">
 																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
 																		</div>
 																		<div class="comment">
-                                                                            <span>
-                                                                                <?php if(is_null($pub->coms[0]->cphoto)): ?>
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
+                                                                            <span>                    
+                                                                              
+                                                                            
+
+                                                                                <?php if(is_null($com->cphoto)): ?>
+                                                                                <img style="width:30px" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
                                                                                 <?php else: ?>
-                                                                                <img style="width:30px;" src="<?php echo e(url('/').'/storage/app/'.$pub->coms[0]->cphoto, false); ?>" alt="">
+                                                                                <img style="width:30px;height:35px" src="<?php echo e(url('/').'/storage/app/'.$com->cphoto, false); ?>" alt="">
                                                                                 <?php endif; ?>
-                                                                                <h3><?php echo e($pub->coms[0]->cname, false); ?></h3> <?php echo e($pub->coms[0]->cdate, false); ?></span>
+
+
+                                                                                <h3><?php echo e($com->cname, false); ?></h3> <?php echo e($com->cdate, false); ?></span>
 																			
-                                                                            <p><?php echo e($pub->coms[0]->content, false); ?> </p>
+                                                                            <p><?php echo e($com->content, false); ?> </p>
 																			
 																			
 																		</div>
 																	</div><!--comment-list end-->
 																</li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 <?php endif; ?>
                                                                
 															</ul>

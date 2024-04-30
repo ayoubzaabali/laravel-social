@@ -151,7 +151,7 @@ unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="new-pass
 												<div class="col-lg-12 no-pdd">
 													<div class="checky-sec st2">
 														<div class="fgt-sec">
-															<input type="checkbox" name="cc" id="c2">
+															<input required type="checkbox" name="cc" id="c2">
 															<label for="c2">
 																<span></span>
 															</label>

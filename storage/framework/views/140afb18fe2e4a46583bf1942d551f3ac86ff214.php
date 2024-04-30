@@ -37,7 +37,7 @@
 
                                        <?php }  ?>
 
-										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+										<li><a  href="<?php echo e(url('/soon'), false); ?>" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>
 								</div>
 								<a href="<?php echo e(url('/'), false); ?>/profile/<?php echo e($encrypted, false); ?>." title="" class="view-more-pro">View Profile</a>

@@ -100,7 +100,7 @@
 									<div class="user-tab-sec rewivew">
 										<h3><?php echo e($data['user_info'][0]->name, false); ?></h3>
 										<div class="star-descp">
-											<span>Ecole Nationale des Sciences Appliquées Tanger</span>
+											<span>E Socials</span>
 											<ul>
 												<li><i class="fa fa-star"></i></li>
 												<li><i class="fa fa-star"></i></li>
@@ -233,7 +233,7 @@
 															
 														</li> 
                                                         <li data="<?php echo e($pub->likes, false); ?>" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span><?php echo e(count($pub->likes), false); ?></span>
+                                                         <span id="pubLikes"><?php echo e(count($pub->likes), false); ?></span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment <?php echo e(count($pub->coms), false); ?></a></li>
 													</ul>
@@ -243,7 +243,7 @@
                                                     Views <?php echo e(count($pub->viewers), false); ?></a>
 												</div>
 											<div class="comment-section">
-												<a id="uih" data="<?php echo e($pub->coms, false); ?>" onclick='viewAll(this)' class="plus-ic">
+												<a style="display:none" id="uih" data="<?php echo e($pub->coms, false); ?>" onclick='viewAll(this)' class="plus-ic">
 													<i class="la la-plus"></i>
                                                     
 												</a>
@@ -252,40 +252,35 @@
 															
 															<ul id="coms">
                                                                 <?php if(count($pub->coms)>0): ?>
+
+
+                                     <?php $__currentLoopData = $pub->coms->reverse(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $com): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
 																<li style="background-color:#F1F1F1;border:1px;padding:10px;margin-buttom:20px">
 																	<div class="comment-list">
 																		<div class="bg-img">
 																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
 																		</div>
 																		<div class="comment">
-                                                                            <span>
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
-                                                                                
-                                                                                <h3><?php echo e($pub->coms[0]->cname, false); ?></h3> <?php echo e($pub->coms[0]->cdate, false); ?></span>
+                                                                            <span>                    
+                                                                              
+                                                                            
+
+                                                                                <?php if(is_null($com->cphoto)): ?>
+                                                                                <img style="width:30px" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
+                                                                                <?php else: ?>
+                                                                                <img style="width:30px;height:35px" src="<?php echo e(url('/').'/storage/app/'.$com->cphoto, false); ?>" alt="">
+                                                                                <?php endif; ?>
+
+
+                                                                                <h3><?php echo e($com->cname, false); ?></h3> <?php echo e($com->cdate, false); ?></span>
 																			
-                                                                            <p><?php echo e($pub->coms[0]->content, false); ?> </p>
-																			
-																			
-																		</div>
-																	</div><!--comment-list end-->
-																</li>
-                                                                <li style="background-color:#F1F1F1;border:1px;padding:10px;   margin-top: 20px;">
-																	<div class="comment-list">
-																		<div class="bg-img">
-																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
-																		</div>
-																		<div class="comment">
-                                                                            <span>
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
-                                                                                
-                                                                                <h3><?php echo e($pub->coms[0]->cname, false); ?></h3> <?php echo e($pub->coms[0]->cdate, false); ?></span>
-																			
-                                                                            <p><?php echo e($pub->coms[0]->content, false); ?> </p>
+                                                                            <p><?php echo e($com->content, false); ?> </p>
 																			
 																			
 																		</div>
 																	</div><!--comment-list end-->
 																</li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 <?php endif; ?>
                                                                
 															</ul>
@@ -673,17 +668,18 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
                     var ul=document.getElementById("coms");
                     var data=dat.getAttribute('data');
                     var xhttp = new XMLHttpRequest();
+                    var test=ul.innerHTML;
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                        //dat.classList.toggle(this.responseText);
                         
                        var json=JSON.parse(this.responseText);
+                       
                        if(json['cphoto']==null){
-                        ul.innerHTML=" <li style='background-color:#F1F1F1;border:1px;padding:10px;  margin-top: 20px;'> <div class='comment-list'> <div class='bg-img'> <img src='<?php echo asset('profile_prop/images/clock.png') ?>' > </div> <div class='comment'> <span><img style='width:30px;' src='<?php echo asset('profile_prop/images/default.jpg') ?>' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";   
+                        ul.innerHTML= test+"<li style='background-color:#F1F1F1;border:1px;padding:10px;  margin-top: 20px;'> <div class='comment-list'> <div class='bg-img'> <img src='<?php echo asset('profile_prop/images/clock.png') ?>' > </div> <div class='comment'> <span><img style='width:30px;' src='<?php echo asset('profile_prop/images/default.jpg') ?>' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";   
                        }else{
                         var URL2="<?php echo e(url('/'), false); ?>";
-
-                        ul.innerHTML=" <li style='background-color:#F1F1F1;border:1px;padding:10px;margin-top:20px'> <div class='comment-list'> <div class='bg-img'> <img src='"+URL2+"/storage/app/"+json['cphoto']+"' > </div> <div class='comment'> <span><img style='width:35px;' src='"+URL2+"/storage/app/"+json['cphoto']+"' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";                            
+                        ul.innerHTML=test+" <li style='background-color:#F1F1F1;border:1px;padding:10px;margin-top:20px'> <div class='comment-list'> <div class='bg-img'> <img src='"+URL2+"/storage/app/"+json['cphoto']+"' > </div> <div class='comment'> <span><img style='width:35px;' src='"+URL2+"/storage/app/"+json['cphoto']+"' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";                            
                        }
                        
                      
@@ -706,6 +702,7 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                        dat.classList.toggle(this.responseText);
+      
                        
                      
                     }

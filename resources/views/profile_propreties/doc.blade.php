@@ -78,7 +78,7 @@
 															
 														</li> 
                                                         <li data="{{$pub->likes}}" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span>{{count($pub->likes)}}</span>
+                                                         <span id="pubLikes">{{count($pub->likes)}}</span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{count($pub->coms)}}</a></li>
 													</ul>
@@ -88,7 +88,7 @@
                                                     Views {{count($pub->viewers)}}</a>
 												</div>
 											<div class="comment-section">
-												<a id="uih" data="{{$pub->coms}}" onclick='viewAll(this)' class="plus-ic">
+												<a style="display:none" id="uih" data="{{$pub->coms}}" onclick='viewAll(this)' class="plus-ic">
 													<i class="la la-plus"></i>
                                                     
 												</a>
@@ -97,26 +97,33 @@
 															
 															<ul id="coms">
                                                                 @if(count($pub->coms)>0)
+																@foreach($pub->coms->reverse() as $com)  
 																<li style="background-color:#F1F1F1;border:1px;padding:10px;margin-buttom:20px">
 																	<div class="comment-list">
 																		<div class="bg-img">
 																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
 																		</div>
 																		<div class="comment">
-                                                                            <span>
-                                                                                @if(is_null($pub->coms[0]->cphoto))
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
+                                                                            <span>                    
+                                                                              
+                                                                            
+
+                                                                                @if(is_null($com->cphoto))
+                                                                                <img style="width:30px" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
                                                                                 @else
-                                                                                <img style="width:30px;" src="{{url('/').'/storage/app/'.$pub->coms[0]->cphoto}}" alt="">
+                                                                                <img style="width:30px;height:35px" src="{{url('/').'/storage/app/'.$com->cphoto}}" alt="">
                                                                                 @endif
-                                                                                <h3>{{$pub->coms[0]->cname}}</h3> {{$pub->coms[0]->cdate}}</span>
+
+
+                                                                                <h3>{{$com->cname}}</h3> {{$com->cdate}}</span>
 																			
-                                                                            <p>{{$pub->coms[0]->content}} </p>
+                                                                            <p>{{$com->content}} </p>
 																			
 																			
 																		</div>
 																	</div><!--comment-list end-->
 																</li>
+                                @endforeach
                                                               
                                                                 @endif
                                                                

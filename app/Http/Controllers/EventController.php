@@ -76,12 +76,11 @@ class EventController extends Controller
         $id = Auth::id();
         $eventID = $request->eventID;
         $eventID= Crypt::decryptString($eventID);
-        if(Event::Test_Privacy($eventID)==1){
-          $active=0;  
+       if(Event::Test_Privacy($eventID)==1){
+           $active=0;  
         }else{
           $active=1;
- 
-        }
+         }
         $var1= Event::Follow_One_Event($id,$eventID,$active);
         if(isset($var1)){
             if($var1==1){

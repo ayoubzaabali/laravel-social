@@ -100,7 +100,7 @@
 									<div class="user-tab-sec rewivew">
 										<h3>{{$data['user_info'][0]->name}}</h3>
 										<div class="star-descp">
-											<span>Ecole Nationale des Sciences Appliquées Tanger</span>
+											<span>E Socials</span>
 											<ul>
 												<li><i class="fa fa-star"></i></li>
 												<li><i class="fa fa-star"></i></li>
@@ -233,7 +233,7 @@
 															
 														</li> 
                                                         <li data="{{$pub->likes}}" class='likes_hov' onclick="people_liked_it(this)">
-                                                         <span>{{count($pub->likes)}}</span>
+                                                         <span id="pubLikes">{{count($pub->likes)}}</span>
                                                         </li>
 														<li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{count($pub->coms)}}</a></li>
 													</ul>
@@ -243,7 +243,7 @@
                                                     Views {{count($pub->viewers)}}</a>
 												</div>
 											<div class="comment-section">
-												<a id="uih" data="{{$pub->coms}}" onclick='viewAll(this)' class="plus-ic">
+												<a style="display:none" id="uih" data="{{$pub->coms}}" onclick='viewAll(this)' class="plus-ic">
 													<i class="la la-plus"></i>
                                                     
 												</a>
@@ -252,40 +252,35 @@
 															
 															<ul id="coms">
                                                                 @if(count($pub->coms)>0)
+
+
+                                     @foreach($pub->coms->reverse() as $com)  
 																<li style="background-color:#F1F1F1;border:1px;padding:10px;margin-buttom:20px">
 																	<div class="comment-list">
 																		<div class="bg-img">
 																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
 																		</div>
 																		<div class="comment">
-                                                                            <span>
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
-                                                                                
-                                                                                <h3>{{$pub->coms[0]->cname}}</h3> {{$pub->coms[0]->cdate}}</span>
+                                                                            <span>                    
+                                                                              
+                                                                            
+
+                                                                                @if(is_null($com->cphoto))
+                                                                                <img style="width:30px" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
+                                                                                @else
+                                                                                <img style="width:30px;height:35px" src="{{url('/').'/storage/app/'.$com->cphoto}}" alt="">
+                                                                                @endif
+
+
+                                                                                <h3>{{$com->cname}}</h3> {{$com->cdate}}</span>
 																			
-                                                                            <p>{{$pub->coms[0]->content}} </p>
-																			
-																			
-																		</div>
-																	</div><!--comment-list end-->
-																</li>
-                                                                <li style="background-color:#F1F1F1;border:1px;padding:10px;   margin-top: 20px;">
-																	<div class="comment-list">
-																		<div class="bg-img">
-																			<img src="<?php echo asset('profile_prop/images/clock.png')  ?>" alt="">
-																		</div>
-																		<div class="comment">
-                                                                            <span>
-                                                                                <img style="width:30px;" src="<?php echo asset('profile_prop/images/default.jpg')  ?>" alt="">
-                                                                                
-                                                                                <h3>{{$pub->coms[0]->cname}}</h3> {{$pub->coms[0]->cdate}}</span>
-																			
-                                                                            <p>{{$pub->coms[0]->content}} </p>
+                                                                            <p>{{$com->content}} </p>
 																			
 																			
 																		</div>
 																	</div><!--comment-list end-->
 																</li>
+                                @endforeach
                                                                 @endif
                                                                
 															</ul>
@@ -673,17 +668,18 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
                     var ul=document.getElementById("coms");
                     var data=dat.getAttribute('data');
                     var xhttp = new XMLHttpRequest();
+                    var test=ul.innerHTML;
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                        //dat.classList.toggle(this.responseText);
                         
                        var json=JSON.parse(this.responseText);
+                       
                        if(json['cphoto']==null){
-                        ul.innerHTML=" <li style='background-color:#F1F1F1;border:1px;padding:10px;  margin-top: 20px;'> <div class='comment-list'> <div class='bg-img'> <img src='<?php echo asset('profile_prop/images/clock.png') ?>' > </div> <div class='comment'> <span><img style='width:30px;' src='<?php echo asset('profile_prop/images/default.jpg') ?>' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";   
+                        ul.innerHTML= test+"<li style='background-color:#F1F1F1;border:1px;padding:10px;  margin-top: 20px;'> <div class='comment-list'> <div class='bg-img'> <img src='<?php echo asset('profile_prop/images/clock.png') ?>' > </div> <div class='comment'> <span><img style='width:30px;' src='<?php echo asset('profile_prop/images/default.jpg') ?>' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";   
                        }else{
                         var URL2="{{url('/')}}";
-
-                        ul.innerHTML=" <li style='background-color:#F1F1F1;border:1px;padding:10px;margin-top:20px'> <div class='comment-list'> <div class='bg-img'> <img src='"+URL2+"/storage/app/"+json['cphoto']+"' > </div> <div class='comment'> <span><img style='width:35px;' src='"+URL2+"/storage/app/"+json['cphoto']+"' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";                            
+                        ul.innerHTML=test+" <li style='background-color:#F1F1F1;border:1px;padding:10px;margin-top:20px'> <div class='comment-list'> <div class='bg-img'> <img src='"+URL2+"/storage/app/"+json['cphoto']+"' > </div> <div class='comment'> <span><img style='width:35px;' src='"+URL2+"/storage/app/"+json['cphoto']+"' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";                            
                        }
                        
                      
@@ -706,6 +702,7 @@ Design a file upload element. Is it the loading screen and icon? A progress elem
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                        dat.classList.toggle(this.responseText);
+      
                        
                      
                     }

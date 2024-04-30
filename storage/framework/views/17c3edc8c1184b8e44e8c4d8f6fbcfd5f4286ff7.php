@@ -55,7 +55,7 @@
 						<a class="nav-link link text-black display-4" href="https://mobiri.se"></a>
 					</li></ul>
 				
-				<div class="navbar-buttons mbr-section-btn"><a class="btn btn-black display-4" style="font-size: 1.1rem;" href="<?php echo e(url('/login'), false); ?>"> Start Now!</a></div>
+				<div class="navbar-buttons mbr-section-btn"><a class="btn btn-black display-4" style="font-size: 1.1rem;" href="<?php echo e(url('/login'), false); ?>">Get Started!</a></div>
 			</div>
 		</div>
 	</nav>
@@ -77,7 +77,7 @@
 				</p>
 				<div class="mbr-section-btn">
 					<a class="btn btn-danger display-7" href="<?php echo e(url('/login'), false); ?>">
-						Connect
+					Sign In
 					</a>
 				</div>
 			</div>
@@ -105,7 +105,7 @@
 					With a spirit of innovation, we navigate uncharted territories, exploring new ideas, technologies, and approaches. It is through our willingness to challenge conventions and think beyond boundaries that we discover innovative solutions that propel us forward.
 					</p>
 					<div class="mbr-section-btn align-left mt-3">
-						<a class="btn btn-success-outline display-7" href="<?php echo e(url('/register'), false); ?>">Get started</a>
+						<a class="btn btn-success-outline display-7" href="<?php echo e(url('/login'), false); ?>">Get started</a>
 					</div>
 				</div>
 			</div>
@@ -124,7 +124,7 @@ background: linear-gradient(90deg, rgba(255,104,63,1) 0%, rgba(254,45,94,1) 100%
         <div class="media-container-row align-center mbr-white">
             <div class="col-12">
                 <p class="mbr-text mb-0 mbr-fonts-style display-7">
-                    © Copyright 2025 Mobirise - All Rights Reserved
+                    © Copyright 2024 - All Rights Reserved
                 </p>
             </div>
         </div>

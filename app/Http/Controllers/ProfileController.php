@@ -89,11 +89,10 @@ public function sendPhoto(Request $request)
       $user_info=Users::User_info($id);
       $data['user_info']=$user_info;
       $data['hide']=$proprety;
-      
       return view('profile_propreties.UserProfile')->with('data', $data);
             
         }else{
-         return view('profile_propreties.not')->with('mess',"User Not Found");
+            return view('profile_propreties.not')->with('mess',"User Not Found");
             
         }
 

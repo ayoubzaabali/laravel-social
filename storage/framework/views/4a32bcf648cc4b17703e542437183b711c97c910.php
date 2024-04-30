@@ -318,6 +318,12 @@ html {
   .option__label::after { transform: scale(1); }
 }
 
+@media (max-width: 576px) {
+    .logo img {
+        width: 20%;
+    }
+}
+
 </style>
     
     

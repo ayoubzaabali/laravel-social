@@ -38,7 +38,7 @@
 
                                        <?php }  ?>
 
-										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+										<li><a href="{{url('/soon')}}" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 									</ul>
 								</div>
 								<a href="{{url('/')}}/Event/{{$encrypted}}." title="" class="view-more-pro">View Event</a>

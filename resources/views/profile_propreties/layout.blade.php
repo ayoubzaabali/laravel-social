@@ -134,7 +134,9 @@
            <footer>
 			<div class="footy-sec mn no-margin">
 				<div class="container">
-					<ul>
+        <p> <img src="<?php echo asset('profile_prop/images/copy-icon2.png')  ?>"  alt="">Copyright 2024</p>
+
+					<ul style="visibility:hidden">
 						<li><a href="help-center.html" title="">Help Center</a></li>
 						<li><a href="about.html" title="">About</a></li>
 						<li><a href="#" title="">Privacy Policy</a></li>
@@ -144,8 +146,7 @@
 						<li><a href="forum.html" title="">Forum</a></li>
 						<li><a href="#" title="">Language</a></li>
 						<li><a href="#" title="">Copyright Policy</a></li>
-					</ul>
-					<p><img src="<?php echo asset('profile_prop/images/copy-icon2.png')  ?>"  alt="">Copyright 2019</p>
+					</ul> 
 					<img class="fl-rgt"src="<?php echo asset('profile_prop/images/logo2.png')  ?>" alt="">
 				</div>
 			</div>
@@ -153,6 +154,7 @@
     </div>
 	
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript"  src="<?php echo asset('profile_prop/js/jquery.min.js')  ?>"></script>
 <script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
@@ -210,17 +212,18 @@
                     var ul=document.getElementById("coms");
                     var data=dat.getAttribute('data');
                     var xhttp = new XMLHttpRequest();
+                    var test =document.getElementById("coms").innerHTML;
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                        //dat.classList.toggle(this.responseText);
                         
                        var json=JSON.parse(this.responseText);
                        if(json['cphoto']==null){
-                        ul.innerHTML=" <li style='background-color:#F1F1F1;border:1px;padding:10px;  margin-top: 20px;'> <div class='comment-list'> <div class='bg-img'> <img src='<?php echo asset('profile_prop/images/clock.png') ?>' > </div> <div class='comment'> <span><img style='width:30px;' src='<?php echo asset('profile_prop/images/default.jpg') ?>' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";   
+                        ul.innerHTML=test+" <li style='background-color:#F1F1F1;border:1px;padding:10px;  margin-top: 20px;'> <div class='comment-list'> <div class='bg-img'> <img src='<?php echo asset('profile_prop/images/clock.png') ?>' > </div> <div class='comment'> <span><img style='width:30px;' src='<?php echo asset('profile_prop/images/default.jpg') ?>' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";   
                        }else{
                         var URL2="{{url('/')}}";
 
-                        ul.innerHTML=" <li style='background-color:#F1F1F1;border:1px;padding:10px;margin-top:20px'> <div class='comment-list'> <div class='bg-img'> <img src='"+URL2+"/storage/app/"+json['cphoto']+"' > </div> <div class='comment'> <span><img style='width:35px;' src='"+URL2+"/storage/app/"+json['cphoto']+"' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";                            
+                        ul.innerHTML=test+" <li style='background-color:#F1F1F1;border:1px;padding:10px;margin-top:20px'> <div class='comment-list'> <div class='bg-img'> <img src='"+URL2+"/storage/app/"+json['cphoto']+"' > </div> <div class='comment'> <span><img style='width:35px;' src='"+URL2+"/storage/app/"+json['cphoto']+"' ><h3>"+json['cname']+"</h3> "+json['cdate']+"</span> <p>" +json['content']+" </p> </div> </div><!--comment-list end--> </li>";                            
                        }
                        
                      
@@ -243,7 +246,13 @@
                     xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                        dat.classList.toggle(this.responseText);
+
+                       if(dat.classList.contains('active')){
+                        document.querySelector("#pubLikes").innerHTML=parseInt(document.querySelector("#pubLikes").innerHTML)+1;
+                       }else{
+                        document.querySelector("#pubLikes").innerHTML=parseInt(document.querySelector("#pubLikes").innerHTML)-1;
                        
+                       }
                      
                     }
                       };
@@ -432,7 +441,9 @@
 
                      
                      }
-    handleNotification();
+
+    window.onload=handleNotification;
+    // handleNotification();
     
     function handleNotification(){
     var type=     typeof mylist.firstElementChild.children[1];
@@ -451,17 +462,31 @@
     }
     
     function getMynotification(lastnotif) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var aui=CreateElement(JSON.parse(this.responseText));
-        if(aui!="n"){
-            var myVar = setTimeout(handleNotification, 3000);
-        }
-    }
-  };
-  xhttp.open("GET", URL+"/getMynotification/"+lastnotif, true);
-  xhttp.send();
+      axios
+    .get(URL+"/getMynotification/"+lastnotif)
+    .then((response) => {
+      var aui=CreateElement( response.data );
+         if(aui!="n"){
+           console.log("test");
+             var myVar = setTimeout(handleNotification, 3000);
+         }
+    })
+    .catch((error) => console.error(error));
+
+
+  //  var xhttp = new XMLHttpRequest();
+  //  xhttp.onreadystatechange = function() {
+  //    if (this.readyState == 4 && this.status == 200) {
+  //     console.log(JSON.parse(this.responseText));
+  //      var aui=CreateElement(JSON.parse(this.responseText));
+  //        if(aui!="n"){
+  //            var myVar = setTimeout(handleNotification, 3000);
+  //        }
+  //    }
+  //  };
+  //  console.log("getting excited");
+  //  xhttp.open("GET", URL+"/getMynotification/"+lastnotif, true);
+  //  xhttp.send();
 }
 
     function CreateElement(myjson){

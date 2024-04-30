@@ -119,7 +119,7 @@ public static function Follow_One_Event($id,$event_id,$active)
                if(Event::FollowExist($id,$info[$i]->id)!=1 ){
                 echo(Event::FollowExist($id,$info[$i]->id));
                 DB::table('user_follows_event')->insert([
-                ['user_id' => $id,'event_id'=>$info[$i]->id]
+                ['user_id' => $id,'event_id'=>$info[$i]->id,'active'=>1]
 
                   ]);  
                }
